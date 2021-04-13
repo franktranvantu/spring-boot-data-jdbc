@@ -1,3 +1,7 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
+-- noinspection SqlDialectInspectionForFile
+
 DROP DATABASE IF EXISTS spring_jdbc;
 CREATE DATABASE spring_jdbc;
 

@@ -36,16 +36,19 @@ public class StudentController {
 
     @PostMapping
     public void createStudent(@RequestBody Student student) {
-
+        studentRepository.save(student);
     }
 
     @PutMapping("/{id}")
     public void updateStudent(@PathVariable int id, @RequestBody Student student) {
-
+        Student existStudent = getStudentById(id);
+        existStudent.setName(student.getName());
+        existStudent.setEmail(student.getEmail());
+        studentRepository.save(existStudent);
     }
 
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable int id) {
-
+        studentRepository.deleteById(id);
     }
 }
