@@ -16,11 +16,11 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/students")
-public class StudentController {
+public class StudentResource {
 
     private final StudentRepository studentRepository;
 
-    public StudentController(StudentRepository studentRepository) {
+    public StudentResource(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
