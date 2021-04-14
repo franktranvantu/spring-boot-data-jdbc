@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -36,16 +37,24 @@ public class StudentController {
 
     @PostMapping
     public void createStudent(@RequestBody Student student) {
-
+        studentRepository.save(student);
     }
 
     @PutMapping("/{id}")
     public void updateStudent(@PathVariable int id, @RequestBody Student student) {
-
+        Student existStudent = getStudentById(id);
+        if (Objects.nonNull(existStudent)) {
+            existStudent.setEmail(student.getEmail());
+            existStudent.setName(student.getName());
+            studentRepository.save(existStudent);
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable int id) {
-
+        Student existStudent = getStudentById(id);
+        if (Objects.nonNull(existStudent)) {
+            studentRepository.delete(existStudent);
+        }
     }
 }
